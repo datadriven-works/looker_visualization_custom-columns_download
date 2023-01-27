@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  devcontainer:
+    build: .
+    working_dir: /workspace
+    volumes:
+      - ..:/workspace
+      # Allow AWS CLI and other tools to read an AWS profile
+      - ~/.aws:/home/node/.aws
+    command: sleep infinity
