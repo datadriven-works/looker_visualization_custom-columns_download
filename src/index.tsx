@@ -1,7 +1,7 @@
 import Hello from "./hello";
 import React from "react";
 import ReactDOM from "react-dom";
-
+import { createRoot } from "react-dom/client";
 import AdvancedTable from "./AdvancedTable";
 
 // @ts-ignore
@@ -24,6 +24,7 @@ looker.plugins.visualizations.add({
   // Set up the initial state of the visualization
   create: function (element, config) {
     // Insert a <style> tag with some styles we'll use later.
+    // console.log("element", element);
     element.innerHTML = `
       <style>
         .hello-world-vis {
@@ -51,19 +52,17 @@ looker.plugins.visualizations.add({
     this._textElement = container.appendChild(document.createElement("div"));
 
     // Render to the target element
-    this.chart = ReactDOM.render(
-      <Hello data="loading..." />,
-      this._textElement
-    );
+    this.root = createRoot(element);
+    this.chart = this.root.render(<Hello data="loading..." />);
   },
   // Render in response to the data or settings changing
   updateAsync: function (data, element, config, queryResponse, details, done) {
-    console.log("data", data);
-    console.log("element", element);
-    console.log("config", config);
-    console.log("queryResponse", queryResponse);
-    console.log("details", details);
-    console.log("done", done);
+    // console.log("data", data);
+    // console.log("element", element);
+    // console.log("config", config);
+    // console.log("queryResponse", queryResponse);
+    // console.log("details", details);
+    // console.log("done", done);
 
     // Clear any errors from previous updates
     this.clearErrors();
@@ -77,9 +76,8 @@ looker.plugins.visualizations.add({
       return;
     }
 
-    this.chart = ReactDOM.render(
-      <AdvancedTable queryfields={config["query_fields"]} dataLooker={data} />,
-      this._textElement
+    this.chart = this.root.render(
+      <AdvancedTable queryfields={config["query_fields"]} dataLooker={data} />
     );
 
     // We are done rendering! Let Looker know.

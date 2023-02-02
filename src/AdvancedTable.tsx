@@ -112,7 +112,7 @@ export default function AdvancedTable({ queryfields, dataLooker }) {
   // console.log("tableData", data);
 
   return (
-    <div style={{ height: 300, width: "100%" }}>
+    <div style={{ height: "100%", width: "100%" }}>
       <DataGrid
         rows={data}
         columns={columns}
