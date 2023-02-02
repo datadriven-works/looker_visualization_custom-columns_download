@@ -2,7 +2,7 @@
   "name": "custom_viz",
   "version": "0.0.1",
   "description": "Bootstrapped Looker Extension with React and Typescript",
-  "main": "dist/bundle.js",
+  "main": "dist/AdvancedTable.js",
   "author": "FlavioJDZ",
   "license": "Apache-2.0",
   "scripts": {
