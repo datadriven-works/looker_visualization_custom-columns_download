@@ -20,7 +20,7 @@ export function createColumnsFromQueryFields(
       field: obj["name"],
       headerName: obj["label_short"],
       type: obj["type"],
-      width: 150,
+      width: 200,
     }))
   );
 
@@ -29,7 +29,7 @@ export function createColumnsFromQueryFields(
       field: obj["name"],
       headerName: obj["label_short"],
       type: obj["type"],
-      width: 150,
+      width: 200,
     }))
   );
 
@@ -38,7 +38,7 @@ export function createColumnsFromQueryFields(
       field: obj["name"],
       headerName: obj["label"],
       type: obj["type"],
-      width: 150,
+      width: 200,
     }))
   );
 
