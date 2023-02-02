@@ -2,7 +2,12 @@ import Hello from "./hello";
 import React from "react";
 import ReactDOM from "react-dom";
 
-import AdvancedTable from "./AdvancedTable";
+import { DataGrid, GridRowsProp, GridColDef } from "@mui/x-data-grid";
+
+import {
+  createColumnsFromQueryFields,
+  createDataFromLookerData,
+} from "./AdvancedTable";
 
 // @ts-ignore
 looker.plugins.visualizations.add({
@@ -77,8 +82,33 @@ looker.plugins.visualizations.add({
       return;
     }
 
+    // Set the size to the user-selected size
+    if (config.font_size == "small") {
+      this._textElement.className = "hello-world-text-small";
+    } else {
+      this._textElement.className = "hello-world-text-large";
+    }
+
+    // Grab the first cell of the data
+    let firstRow = data[0];
+    const firstCell = firstRow[queryResponse.fields.dimensions[0].name].value;
+
+    const rows: GridRowsProp = [
+      { id: 1, col1: "Hello", col2: "World" },
+      { id: 2, col1: "DataGridPro", col2: "is Awesome" },
+      { id: 3, col1: "MUI", col2: "is Amazing" },
+    ];
+
+    const columns = createColumnsFromQueryFields(config["query_fields"]);
+    console.log("columns", columns);
+
+    const tableData = createDataFromLookerData(data);
+    console.log("tableData", tableData);
+    // Finally update the state with our new data
     this.chart = ReactDOM.render(
-      <AdvancedTable queryfields={config["query_fields"]} dataLooker={data} />,
+      <div style={{ height: 300, width: "100%" }}>
+        <DataGrid rows={tableData} columns={columns} />
+      </div>,
       this._textElement
     );
 

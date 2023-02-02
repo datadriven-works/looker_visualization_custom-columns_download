@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 // Create (or import) our react component
 export default class Hello extends React.Component {
-  constructor (props) {
+  constructor(props) {
     // So we have access to 'this'
-    super(props)
+    super(props);
   }
 
   // render our data
