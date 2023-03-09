@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  DataGrid,
-  GridRowsProp,
-  GridColDef,
-  GridToolbar,
-} from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridToolbar } from "@mui/x-data-grid";
 
 export function createColumnsFromQueryFields(
   queryFields: Object
@@ -65,43 +60,6 @@ export function createDataFromLookerData(dataLooker): Object[] {
   });
 
   return data;
-}
-
-export function createRowsFromQueryFields(queryFields): GridRowsProp[] {
-  const dimensions = queryFields["dimensions"];
-  const measures = queryFields["measures"];
-  const calculations = queryFields["table_calculations"];
-
-  var columns = [];
-
-  columns = columns.concat(
-    dimensions.map((obj) => ({
-      field: obj["name"],
-      headerName: obj["label_short"],
-      type: obj["type"],
-      // width: 150,
-    }))
-  );
-
-  columns = columns.concat(
-    measures.map((obj) => ({
-      field: obj["name"],
-      headerName: obj["label_short"],
-      type: obj["type"],
-      // width: 150,
-    }))
-  );
-
-  columns = columns.concat(
-    calculations.map((obj) => ({
-      field: obj["name"],
-      headerName: obj["label"],
-      type: obj["type"],
-      // width: 150,
-    }))
-  );
-
-  return columns;
 }
 
 export default function AdvancedTable({ queryfields, dataLooker }) {
